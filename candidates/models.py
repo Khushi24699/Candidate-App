@@ -40,3 +40,11 @@ class Skill(models.Model):
     skill = models.CharField(max_length=200)
     user = models.ForeignKey(
         User, related_name='skills', on_delete=models.CASCADE)
+
+def __str__(self):
+    return self.name
+
+def soft_delete(self):
+    self.is_deleted = True
+    self.deleted_at = timezone.now()
+    self.save()

@@ -74,6 +74,11 @@ def profile_view(request, slug):
     }
     return render(request, 'candidates/profile.html', context)
 
+@login_required
+def delete_profile(request):
+    
+
+
 
 def candidate_details(request):
     return render(request, 'candidates/details.html')
