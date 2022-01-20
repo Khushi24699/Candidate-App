@@ -40,7 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.sessions',
     'debug_toolbar',
-    'candidate',
+    'django_countries',
+
+    'candidates',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
