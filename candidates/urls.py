@@ -8,4 +8,6 @@ urlpatterns= [
     path('profile/<slug>', views.profile_view, name='profile-view'),
     path('introduction/', views.candidate_details, name='detail-candidates'),
     path('delete_skills/', views.delete_skill, name='skill-delete'),
+    path('delete_profile/', views.delete_profile, name='profile-delete'),
+
 ]

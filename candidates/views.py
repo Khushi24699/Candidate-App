@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Profile, Skill
+from .models import Profile, Skill, SoftDeleteModel
 from .forms import ProfileUpdateForm,NewSkillForm
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
@@ -11,6 +11,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import get_user_model
 from django.core.paginator import Paginator
+from rest_framework import status, viewsets
+
 
 # Create your views here.
 def home(request):
@@ -74,9 +76,6 @@ def profile_view(request, slug):
     }
     return render(request, 'candidates/profile.html', context)
 
-@login_required
-def delete_profile(request):
-    
 
 
 
@@ -91,4 +90,12 @@ def delete_skill(request, pk=None):
         for skill_id in id_list:
             Skill.objects.get(id=skill_id).delete()
         return redirect('my-profile')
+
+
+@login_required
+def delete_profile( request, uuid=None):
+        user = request.user
+        profile = Profile.objects.filter(user=user).first()
+        profile.SoftDeleteModel(user.uuid)
+        return render(None, status=status.HTTP_204_NO_CONTENT)    
 
